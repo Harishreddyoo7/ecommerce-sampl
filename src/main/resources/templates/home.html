@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: *">
+<body>
+<section>
+    <h1>Products</h1>
+    <div class="grid">
+        <div class="card" th:each="p : ${products}">
+            <h3 th:text="${p.name}">Name</h3>
+            <p th:text="${p.description}">Desc</p>
+            <strong th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 2, 'POINT')}">0</strong>
+            <form th:action="@{'/cart/add/' + ${p.id}}" method="post">
+                <button>Add to cart</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

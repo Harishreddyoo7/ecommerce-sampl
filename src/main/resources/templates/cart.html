@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: *">
+<body>
+<section>
+    <h1>Your Cart</h1>
+    <table>
+        <thead><tr><th>Product</th><th>Qty</th><th>Price</th><th></th></tr></thead>
+        <tbody>
+        <tr th:each="i : ${items}">
+            <td th:text="${i.product.name}">Product</td>
+            <td th:text="${i.quantity}">1</td>
+            <td th:text="${#numbers.formatDecimal(i.product.price, 0, 'COMMA', 2, 'POINT')}">0</td>
+            <td>
+                <form th:action="@{'/cart/remove/' + ${i.id}}" method="post">
+                    <button>Remove</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>
